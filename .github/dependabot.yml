@@ -3,6 +3,6 @@ updates:
   - package-ecosystem: "maven"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     # Security updates only: a limit of 0 disables version update pull requests.
     open-pull-requests-limit: 0
