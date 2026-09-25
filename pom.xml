@@ -19,7 +19,7 @@
 		<jdk.compiler.version.local>1.8</jdk.compiler.version.local>
 		<jdk.source.version.openshift>1.6</jdk.source.version.openshift>
 		<jdk.compiler.version.openshift>1.6</jdk.compiler.version.openshift>
-		<maven.compiler.plugin.version>3.3</maven.compiler.plugin.version>
+		<maven.compiler.plugin.version>3.16.0</maven.compiler.plugin.version>
 		<!-- - - - - - Logger - - - - - -->
 		<org.slf4j.version>1.7.21</org.slf4j.version>
 		<!-- - - - - - Test - - - - - -->
