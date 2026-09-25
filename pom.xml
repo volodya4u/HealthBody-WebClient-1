@@ -27,7 +27,7 @@
 		<!-- - - - - - Logger - - - - - -->
 		<org.slf4j.version>1.7.21</org.slf4j.version>
 		<!-- - - - - - Test - - - - - -->
-		<org.testng.version>6.9.10</org.testng.version>
+		<org.testng.version>7.12.0</org.testng.version>
 		<testng.reports.directory>./target/surefire-reports/test-output</testng.reports.directory>
 		<maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
 		<!-- - - - - - Web - - - - - -->
