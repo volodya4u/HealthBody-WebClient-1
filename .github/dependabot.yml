@@ -2,6 +2,7 @@ version: 2
 updates:
   - package-ecosystem: "maven"
     directory: "/"
-    target-branch: "development"
     schedule:
       interval: "weekly"
+    # Security updates only: a limit of 0 disables version update pull requests.
+    open-pull-requests-limit: 0
