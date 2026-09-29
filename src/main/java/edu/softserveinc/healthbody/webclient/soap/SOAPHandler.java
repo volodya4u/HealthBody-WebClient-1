@@ -22,7 +22,6 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamSource;
 
-import org.dom4j.Element;
 import org.dom4j.io.DocumentResult;
 import org.dom4j.io.DocumentSource;
 import org.dom4j.io.OutputFormat;
@@ -140,11 +139,7 @@ public class SOAPHandler {
 		 */
 		Document document = parseXmlFile(outputString);
 		NodeList nodeLst = document.getElementsByTagName("ns2:" + nameMethod + "Response");
-		//my be a solution
-		Element eElement=null;
-		eElement =  (Element) nodeLst.item(0);
-		String entityInXml = eElement.getText();
-		/*String entityInXml = nodeLst.item(0).getTextContent();*/
+		String entityInXml = nodeLst.item(0).getTextContent();
 		out.close();
 		return entityInXml;
 	}
