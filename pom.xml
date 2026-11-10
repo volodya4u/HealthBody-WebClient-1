@@ -20,9 +20,9 @@
 		<jdk.compiler.version.openshift>1.6</jdk.compiler.version.openshift>
 		<maven.compiler.plugin.version>3.16.0</maven.compiler.plugin.version>
 		<!-- - - - - - Logger - - - - - -->
-		<org.slf4j.version>1.7.21</org.slf4j.version>
+		<org.slf4j.version>1.7.36</org.slf4j.version>
 		<!-- - - - - - Test - - - - - -->
-		<org.testng.version>6.9.10</org.testng.version>
+		<org.testng.version>7.12.0</org.testng.version>
 		<mockito.version>5.24.0</mockito.version>
 		<testng.reports.directory>./target/surefire-reports/test-output</testng.reports.directory>
 		<maven.surefire.plugin.version>3.5.6</maven.surefire.plugin.version>
@@ -30,17 +30,17 @@
 		<maven.war.plugin.version>3.5.1</maven.war.plugin.version>
 		<cxf.version>2.2.3</cxf.version>
 		<!-- - - - - - Google API - - - - - -->
-		<google.api.client.version>1.22.0</google.api.client.version>
+		<google.api.client.version>2.9.2</google.api.client.version>
 		<!-- - - - Parsing XML & JSON - - - -->
-		<dom4j.version>1.6.1</dom4j.version>
-		<gson.version>2.7</gson.version>
+		<dom4j.version>2.1.4</dom4j.version>
+		<gson.version>2.15.0</gson.version>
 		<!-- - - - Spring Framework - - - -->
 		<org.springframework.version>4.3.1.RELEASE</org.springframework.version>
 		<org.springframework.security.version>4.1.1.RELEASE</org.springframework.security.version>
 		<!-- - - - - - JPA - - - - - -->
 		<spring-data-jpa.version>1.10.1.RELEASE</spring-data-jpa.version>
-		<postgresql.connector.version>9.4-1200-jdbc41</postgresql.connector.version>
-		<hibernate.version>5.0.0.Final</hibernate.version>
+		<postgresql.connector.version>42.7.14</postgresql.connector.version>
+		<hibernate.version>5.6.15.Final</hibernate.version>
 		<!-- - - - - - Variables - - - - - -->
 		<my.text>Hello World!</my.text>
 	</properties>
@@ -78,6 +78,13 @@
 			<artifactId>jaxws-api</artifactId>
 			<version>2.3.1</version>
 			<scope>test</scope>
+			<exclusions>
+				<!-- javax.mail already brings the complete javax.activation classes -->
+				<exclusion>
+					<groupId>javax.activation</groupId>
+					<artifactId>javax.activation-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>javax.jws</groupId>
@@ -86,9 +93,15 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- - - - Logger - - - -->
+		<!-- Pinned so the API matches the 1.7 binding below; TestNG would otherwise pull in slf4j-api 2.x -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${org.slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-reload4j</artifactId>
 			<version>${org.slf4j.version}</version>
 		</dependency>
 
@@ -122,7 +135,7 @@
 		</dependency>
 		<!-- - - - Parsing XML & JSON - - - -->
 		<dependency>
-			<groupId>dom4j</groupId>
+			<groupId>org.dom4j</groupId>
 			<artifactId>dom4j</artifactId>
 			<version>${dom4j.version}</version>
 			<type>jar</type>
@@ -206,34 +219,41 @@
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
+			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
+			<exclusions>
+				<!-- javax.mail already brings the complete javax.activation classes -->
+				<exclusion>
+					<groupId>javax.activation</groupId>
+					<artifactId>javax.activation-api</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.4.7</version>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.2</version>
 		</dependency>
 		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
-			<version>1.1.0.Final</version>
+			<groupId>jakarta.validation</groupId>
+			<artifactId>jakarta.validation-api</artifactId>
+			<version>2.0.2</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-validator</groupId>
 			<artifactId>commons-validator</artifactId>
-			<version>1.5.1</version>
+			<version>1.11.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>5.2.4.Final</version>
+			<version>6.2.5.Final</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>4.5.2</version>
+			<version>4.5.14</version>
 		</dependency>
 	</dependencies>
 	<build>
